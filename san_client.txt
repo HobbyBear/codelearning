@@ -1,0 +1,17 @@
+[req]
+default_bits = 4096
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+[req_distinguished_name]
+countryName = country
+stateOrProvinceName = province
+localityName = city
+organizationName = company name
+## 换成自己的域名
+commonName = lanpangziclient.com  
+[v3_req]
+subjectAltName = @alt_names
+[alt_names]
+## 换成自己的域名
+DNS.1=*.lanpangziclient.com
+DNS.2=*.lanpangziclient2.com
