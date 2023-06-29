@@ -1,4 +1,4 @@
-package main
+package consistenthash
 
 import (
 	"fmt"
@@ -6,21 +6,13 @@ import (
 	"sort"
 )
 
-func main() {
-	ch := NewConsistentHash(3)
-	ch.AddNodes("node1")
-	ch.AddNodes("node2")
-	ch.AddNodes("node3")
-	fmt.Println(ch.GetNode("lanpangzi"))
-}
-
 type ConsistentHash struct {
 	nodes      map[uint32]string
 	keys       []uint32
 	replicates int
 }
 
-func NewConsistentHash(replicate int) *ConsistentHash {
+func New(replicate int) *ConsistentHash {
 	return &ConsistentHash{
 		nodes:      make(map[uint32]string),
 		keys:       make([]uint32, 0),
