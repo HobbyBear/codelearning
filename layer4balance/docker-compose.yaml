@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mysql1:
+    restart: always
+    image: amd64/mysql:latest
+    container_name: mysql1
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234567"
+      - "MYSQL_DATABASE=test"
+    ports:
+      - "3306:3306"
+
+  mysql2:
+    restart: always
+    image: amd64/mysql:latest
+    container_name: mysql2
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234567"
+      - "MYSQL_DATABASE=test"
+    ports:
+      - "3307:3306"

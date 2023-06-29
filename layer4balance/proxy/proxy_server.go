@@ -31,29 +31,32 @@ func (s *Server) Run() {
 			}
 			fmt.Println("获取到了新连接", remoteAddr, backendIp)
 			go func() {
-				_, err := copyBuffer(serverConn, c, nil)
+				_, err := copyBuffer(serverConn, c)
 				if err != nil {
 					c.Close()
 					serverConn.Close()
 					fmt.Println(err)
 					return
 				}
+				fmt.Println("结束1")
 			}()
 			go func() {
-				_, err := copyBuffer(c, serverConn, nil)
+				_, err := copyBuffer(c, serverConn)
 				if err != nil {
 					c.Close()
 					serverConn.Close()
 					fmt.Println(err)
 					return
 				}
+				fmt.Println("结束2")
 			}()
 		}(c)
 	}
 
 }
 
-func copyBuffer(dst io.Writer, src io.Reader, buf []byte) (written int64, err error) {
+func copyBuffer(dst io.Writer, src io.Reader) (written int64, err error) {
+	var buf []byte
 	if buf == nil {
 		size := 32 * 1024
 		if l, ok := src.(*io.LimitedReader); ok && int64(size) > l.N {
