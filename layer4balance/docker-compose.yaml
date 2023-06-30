@@ -16,6 +16,6 @@ services:
     container_name: mysql2
     environment:
       - "MYSQL_ROOT_PASSWORD=1234567"
-      - "MYSQL_DATABASE=test"
+      - "MYSQL_DATABASE=test2"
     ports:
       - "3307:3306"
