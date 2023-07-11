@@ -1,11 +1,14 @@
 package balancepolicy
 
+import "sync"
+
 type Policy interface {
 	AddNode(addr string, nodeName string)
 	PickNode(key string) string
 }
 
 type RoundRobin struct {
+	lock     sync.Mutex
 	index    int64
 	nodeInfo map[string]string
 	nodes    []string
@@ -25,6 +28,8 @@ func (r *RoundRobin) AddNode(addr string, nodeName string) {
 }
 
 func (r *RoundRobin) PickNode(key string) string {
+	r.lock.Lock()
+	defer r.lock.Unlock()
 	num := r.index % int64(len(r.nodes))
 	r.index++
 	if r.index < 0 {

@@ -23,7 +23,7 @@ func New(replicate int) *ConsistentHash {
 func (c *ConsistentHash) AddNodes(node string) {
 	for i := 0; i <= c.replicates; i++ {
 		nodename := fmt.Sprintf("%s#%d", node, i)
-		hashKey := crc32.ChecksumIEEE([]byte(node))
+		hashKey := crc32.ChecksumIEEE([]byte(nodename))
 		c.nodes[hashKey] = nodename
 		c.keys = append(c.keys, hashKey)
 	}
