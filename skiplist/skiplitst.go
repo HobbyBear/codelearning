@@ -12,6 +12,13 @@ type Skiplist struct {
 	head *Node
 }
 
+/**
+时间复杂度，O(lg n),每一层是常数次比较，  空间复杂度 O(n)
+主要理清楚查找，插入思路，什么时候搜索终止，什么时候找到插入的节点，单链表在插入和删除时都比较依赖于先找到前一个节点，
+所以针对于跳表来讲，每一层都有一个最小的节点会比较容易做删除和搜索相关的工作。
+
+*/
+
 func Constructor() Skiplist {
 	return Skiplist{head: &Node{val: -1, down: nil, next: nil}}
 }
