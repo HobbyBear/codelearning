@@ -16,9 +16,6 @@ package main
 
 0 <= 数组长度 <= 50000
 */
-//func reversePairs(nums []int) int {
-//
-//}
 
 func reversePairs(nums []int) int {
 	var cnt = 0

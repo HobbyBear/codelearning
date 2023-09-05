@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 	sortArray([]int{5, 2, 3, 1})
 }
@@ -20,7 +18,6 @@ func mergesort(arr []int, l, r int) {
 	mergesort(arr, l, mid)
 	mergesort(arr, mid+1, r)
 	merge(arr, l, mid, r)
-	fmt.Println(arr[l : r+1])
 }
 
 // [l...mid] [mid+1...r]
