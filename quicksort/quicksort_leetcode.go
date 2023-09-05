@@ -1,10 +1,5 @@
 package quicksort
 
-import (
-	"math/rand"
-	"time"
-)
-
 /*
 *
 
@@ -40,8 +35,6 @@ func findKthLargest(nums []int, k int) int {
 // v [l+1..lt]     [gt...r] 进行分区，判断 分区后的lt+1 和k的大小
 func partition(nums []int, k int, l, r int) int {
 	lt := l
-	rand.Seed(time.Now().Unix())
-	swap(nums, l, rand.Intn(r-l+1)+l)
 	v := nums[l]
 	gt := r + 1
 	i := l + 1 // 当前遍历元素
@@ -66,11 +59,10 @@ func partition(nums []int, k int, l, r int) int {
 		return nums[lt+1]
 	}
 	if lt+1 < k-1 {
-		offset := lt + 2
-		if gt >= k-1 {
-			offset = k - 1
+		if gt > k-1 {
+			return nums[k-1]
 		}
-		return partition(nums, k, offset, r)
+		return partition(nums, k, gt, r)
 	}
 	return partition(nums, k, l, lt)
 }
