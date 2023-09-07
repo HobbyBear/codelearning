@@ -1,5 +1,7 @@
 package lru
 
+import "strconv"
+
 type Node struct {
 	pre, next *Node
 	val       int
@@ -54,6 +56,17 @@ func (l *LRU) Add(val int) {
 		for cur.next != nil {
 			cur = cur.next
 		}
-		cur.pre = nil
+		cur.pre.next = nil
+		delete(l.m, cur.val)
 	}
+}
+
+func (l *LRU) String() string {
+	res := ""
+	cur := l.Root
+	for cur.next != nil {
+		res += " " + strconv.Itoa(cur.next.val)
+		cur = cur.next
+	}
+	return res
 }
