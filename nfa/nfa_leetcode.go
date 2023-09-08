@@ -149,6 +149,7 @@ func matchHelper(state *State, chars []rune, index int) int {
 	}
 	if index == len(chars) {
 		if End(state) {
+			// 匹配的长度达到了字符串的长度并且节点是最终状态，才算是匹配成功
 			return len(chars)
 		} else {
 			return -1
